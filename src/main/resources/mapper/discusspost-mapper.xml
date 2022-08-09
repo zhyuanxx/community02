@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yzh.community.dao.DiscussPostMapper">
+
+    <sql id="selectFields">
+        id, user_id, title, content, type, status, create_time, comment_count, score
+    </sql>
+
+    <!--查询所有帖子-->
+    <select id="selectDiscussPosts" resultType="com.yzh.community.entity.DiscussPost" parameterType="int">
+        select 
+        <include refid="selectFields"></include>
+        from discuss_post
+        <where>
+            <if test="userId!=0">
+                and user_id=#{userId}
+            </if>
+        </where>
+        limit #{offset},#{limit}
+    </select>
+
+
+    <!--查询数量-->
+    <select id="selectDiscussPostRows" resultType="int" parameterType="int">
+        select count(*)
+        from discuss_post
+        <where>
+            <if test="userId!=0">
+                and user_id=#{userId}
+            </if>
+        </where>
+    </select>
+
+</mapper>
