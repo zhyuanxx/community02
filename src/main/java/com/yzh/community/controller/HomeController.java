@@ -27,7 +27,7 @@ public class HomeController {
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     public String getIndexPage(Model model , Page page) {
         // 方法调用钱,SpringMVC会自动实例化Model和Page,并将Page注入Model.
-        // 所以,在thymeleaf中可以直接访问Page对象中的数据.
+        // 所以,在thymeleaf中可以直接访问Page对象中的数据.fssfsfsf
         //获取总数据数
         page.setRows(discussPostService.findDiscussPostRows(0));
         List<DiscussPost> discusss = discussPostService.findDiscussPosts(0, page.getOffset(), page.getLimit());
